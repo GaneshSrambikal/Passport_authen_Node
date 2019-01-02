@@ -108,7 +108,7 @@ router.get('/logout', (req, res) => {
     res.redirect('/users/login');
     //for console only
     console.log("User Loged Out");
-    console.log("showing Login page");
+    
 });
 
 
