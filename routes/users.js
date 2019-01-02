@@ -5,10 +5,16 @@ const User = require('../models/User');
 const passport = require('passport');
 
 //Login Page
-router.get('/login', (req, res) => res.render('login'));
+router.get('/login', (req, res) => {
+    res.render('login');
+    console.log("showing page: login");
+});
 
 //Register Page
-router.get('/register', (req, res) => res.render('register'));
+router.get('/register', (req, res) => {
+    res.render('register');
+    console.log("showing page: Register");
+});
 
 //Register Handle
 router.post('/register', (req, res) => {
@@ -75,7 +81,9 @@ router.post('/register', (req, res) => {
                                     res.redirect('/users/login');
                                 })
                                 .catch(err => console.log(err));
-                        }))
+                        }));
+                        //for console only
+                    console.log("New User " + name + " created.");
                 }
             });
 
@@ -84,10 +92,12 @@ router.post('/register', (req, res) => {
 
 //login handle
 router.post('/login', (req, res, next) => {
+
     passport.authenticate('local', {
         successRedirect: '/dashboard',
         failureRedirect: '/users/login',
-        failureFlash: true
+        failureFlash: true,
+
     })(req, res, next);
 });
 
@@ -96,6 +106,9 @@ router.get('/logout', (req, res) => {
     req.logout();
     req.flash('success_msg', 'You are logged out');
     res.redirect('/users/login');
+    //for console only
+    console.log("User Loged Out");
+    console.log("showing Login page");
 });
 
 

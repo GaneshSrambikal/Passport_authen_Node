@@ -33,6 +33,7 @@ app.use(
       saveUninitialized: true
     })
   );
+
 //Passport middleware
   app.use(passport.initialize());
   app.use(passport.session());
@@ -52,6 +53,6 @@ app.use((req,res,next) =>{
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users.js'));
 
-const PORT = process.env.PORT || 5000;
 
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`server start at port ${PORT}`));
